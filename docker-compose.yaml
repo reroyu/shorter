@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "80:80"
+      - "8000:8000"
+      - "443:443"
+    restart: always
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - data:/home/redis_cache
+    command: redis-server --save 60 1 --loglevel warning
+
+volumes:
+  data:

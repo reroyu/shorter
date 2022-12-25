@@ -1,0 +1,58 @@
+<html lang="ru">
+<head>
+    <title> {{domain}} - makes URL short</title>
+    <link href=style.css rel="stylesheet">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <a href="https://{{domain}}">{{domain}}</a><br>
+    makes url short still readable
+</header>
+
+<main>
+    <form method="post">
+        <label>
+            <input autocomplete="off" name="input_url"
+                   onfocus="this.value=''"
+                   required="required"
+                   type="url"
+                   value="Input URL and press enter"
+                   width=""/>
+        </label>
+    </form>
+    {% if human and bot and qr %}
+    <div class="row">
+        <div class="column">
+            <img alt="QR code" src="data: image/png;base64,{{qr}}">
+        </div>
+        <div class="column">
+            Click on links<br>to copy!
+        </div>
+        <div class="column">
+            <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+                    value="https://{{domain}}/{{human}}">
+                🧑 {{domain}}/<br>{{human}}
+            </button>
+        </div>
+        <div class="column">
+            <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+                    value="https://{{domain}}/{{bot}}">
+                🤖 {{domain}}/<br>{{bot}}
+            </button>
+        </div>
+    </div>
+    <br>
+    {% endif %}
+</main>
+
+<footer>
+</footer>
+</body>
+
+</html>
